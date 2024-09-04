@@ -10,6 +10,10 @@ jobs:
   build:  
     runs-on: ubuntu-latest  
 
+
+    env:  
+      AWS_REGION: us-west-2  # 替换为您的区域
+
     steps:  
       - name: Checkout code  
         uses: actions/checkout@v3  
