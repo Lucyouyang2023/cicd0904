@@ -4,3 +4,4 @@
 *.tfstate.backup
 *.tf
 *.terraform.lock.hc
+*.sh
