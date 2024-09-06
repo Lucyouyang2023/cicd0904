@@ -4,14 +4,6 @@ name: CI/CD Pipeline
 on:
     workflow_dispatch:
         
-# on:  
-#   workflow_run:
-#     workflows: ["Terraform Workflow"]
-#     types:
-#       - completed
-
-
-
 jobs:
   cicd:
     runs-on: ubuntu-latest
@@ -71,3 +63,8 @@ jobs:
           
 
           
+# on:  
+#   workflow_run:
+#     workflows: ["Terraform Workflow"]
+#     types:
+#       - completed
