@@ -114,3 +114,4 @@ resource "aws_ecs_service" "my_service" {
     security_groups = [aws_security_group.ecs_sg.id]
   }
 }
+#1
