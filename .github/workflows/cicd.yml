@@ -36,15 +36,16 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
 
-      - name: Debug ECR_REPOSITORY_URL
-        run: echo $ECR_REPOSITORY_URL
-        env:
-          ECR_REPOSITORY_URL: ${{ secrets.ECR_REPOSITORY_URL }}
-        
+      - name: Get ECR Repository URL
+        id: ecr
+        run: |
+          ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url | awk -F '::' '{print $1}')
+          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" >> $GITHUB_ENV
+        working-directory: ./terraform
       
       - name: Build and push Docker image
         env:
-          ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }} 
+          ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }}  
         run: |  
           docker build -t my-app .  
           docker tag my-app:latest $ECR_REPOSITORY_URL:latest
