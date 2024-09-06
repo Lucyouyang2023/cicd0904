@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-northeast-1"  # 替换为您的区域
+  region = "ap-northeast-1"  
 }
 
 resource "aws_ecr_repository" "my_app" {
