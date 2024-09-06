@@ -24,29 +24,36 @@ jobs:
           echo "AWS_DEFAULT_REGION=ap-northeast-1" >> $GITHUB_ENV
 
       - name: Initialize Terraform
-        run: terraform init
         working-directory: ./terraform
+        run: terraform init
+
+      - name: plan Terraform
+        working-directory: ./terraform
+        run: terraform plan
+        
 
       - name: Apply Terraform
-        run: terraform apply -auto-approve
         working-directory: ./terraform
-
+        run: terraform apply -auto-approve
+        
       - name: Debug Terraform Output
+        working-directory: ./terraform
         run: |
-         terraform output -raw ecr_repository_url
-         ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url)
-         echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
-         echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" > debug_output.txt
-         cat debug_output.txt        
-         working-directory: ./terraform
+          set -e  
+          ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url)  
+          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"  
+          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" >> debug_output.txt  
+          cat debug_output.txt  
+         
 
       - name: Get ECR Repository URL
         id: ecr
+        working-directory: ./terraform
         run: |
           ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url | awk -F '::' '{print $1}')
           echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
           echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" >> $GITHUB_ENV
-        working-directory: ./terraform
+        
 
 
     #   - name: Get Subnet ID
