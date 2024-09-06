@@ -50,11 +50,7 @@ jobs:
         id: sg
         run: echo "::set-output name=security_group_id::$(terraform output -raw security_group_id)"
 
-    #   - name: Get ECR Repository URL
-    #     id: ecr
-    #     run: echo "ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url)" >> $GITHUB_ENV
-    #     working-directory: ./terraform
-    #1
+
     
   
      
