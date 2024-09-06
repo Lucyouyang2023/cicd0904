@@ -41,6 +41,7 @@ jobs:
         id: ecr
         run: |
           ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url | awk -F '::' '{print $1}')
+          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
           echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" >> $GITHUB_ENV
         working-directory: ./terraform
 
