@@ -41,8 +41,8 @@ jobs:
           ECR_REPOSITORY_URL: ${{ secrets.ECR_REPOSITORY_URL }}  
         run: |  
           docker build -t my-app .  
-          docker tag my-app:latest ${{ env.ECR_REPOSITORY_URL }} :latest
-          docker push ${{ env.ECR_REPOSITORY_URL }}:latest
+          docker tag my-app:latest ${{ env.ECR_REPOSITORY_URL }} 
+          docker push ${{ env.ECR_REPOSITORY_URL }}
       - name: Deploy to ECS  
         run: |  
           aws ecs update-service --cluster my-cluster --service my-service --force-new-deployment
