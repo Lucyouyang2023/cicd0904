@@ -29,28 +29,28 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ./terraform
 
-    #   - name: Debug Terraform Output
-    #     run: |
-    #      terraform output -raw ecr_repository_url
-    #      ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url)
-    #      echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
-    #     working-directory: ./terraform
+      - name: Debug Terraform Output
+        run: |
+         terraform output -raw ecr_repository_url
+         ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url)
+         echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
+        working-directory: ./terraform
 
-    #   - name: Debug ECR Repository URL
-    #     run: |
-    #       ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url | awk -F '::' '{print $1}')
-    #       echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
-    #       echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" >> $GITHUB_ENV
-    #       echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" > debug_output.txt
+      - name: Debug ECR Repository URL
+        run: |
+          ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url | awk -F '::' '{print $1}')
+          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
+          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" >> $GITHUB_ENV
+          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" > debug_output.txt
 
 
     
       - name: Get ECR Repository URL
         id: ecr
-        run: |
+        run: 
           ECR_REPOSITORY_URL=$(terraform output -raw ecr_repository_url | awk -F '::' '{print $1}')
-          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
-          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" >> $GITHUB_ENV
+          #echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL"
+          #echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" >> $GITHUB_ENV
         working-directory: ./terraform
 
 
