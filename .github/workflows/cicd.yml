@@ -50,6 +50,7 @@ jobs:
           docker build -t my-app .  
           docker tag my-app:latest 822573796369.dkr.ecr.ap-northeast-1.amazonaws.com/my-app:latest
           docker push 822573796369.dkr.ecr.ap-northeast-1.amazonaws.com/my-app:latest
+
       - name: Deploy to ECS  
         run: |  
           aws ecs update-service --cluster my-cluster --service my-service --force-new-deployment
@@ -62,7 +63,7 @@ jobs:
       - name: Start ECS Task
         working-directory: ./terraform
         run: |
-          aws ecs run-task --cluster my-cluster --launch-type FARGATE --task-definition my-task --count 1 --network-configuration "awsvpcConfiguration={subnets=[${{ steps.subnet.outputs.subnet_id }}],securityGroups=[${{ steps.sg.outputs.security_group_id }}],assignPublicIp=ENABLED}"  
+          aws ecs run-task --cluster my-cluster --launch-type FARGATE --task-definition my-task --count 1 --network-configuration "awsvpcConfiguration={subnets=['${{ steps.subnet.outputs.subnet_id }}'],securityGroups=['${{ steps.sg.outputs.security_group_id }}'],assignPublicIp=ENABLED}"  
         env:
           AWS_REGION: ap-northeast-1
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
