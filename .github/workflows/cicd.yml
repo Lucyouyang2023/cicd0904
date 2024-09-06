@@ -44,7 +44,7 @@ jobs:
       
       - name: Build and push Docker image
         env:
-          ECR_REPOSITORY_URL: ${{ secrets.ECR_REPOSITORY_URL }}  
+          ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }} 
         run: |  
           docker build -t my-app .  
           docker tag my-app:latest $ECR_REPOSITORY_URL:latest
