@@ -37,9 +37,6 @@ jobs:
          echo "ECR_REPOSITORY_URL=$ECR_REPOSITORY_URL" > debug_output.txt
         working-directory: ./terraform
 
-    
-
-    
       - name: Get ECR Repository URL
         id: ecr
         run: |
