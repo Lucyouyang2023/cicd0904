@@ -1,6 +1,6 @@
 # terraform/outputs.tf  
 output "ecr_repository_url" {
-  value = aws_ecr_repository.my_repo.repository_url
+  value = aws_ecr_repository.my_app.repository_url
 }
 
 # output "subnet_id" {
