@@ -60,6 +60,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     
       - name: Start ECS Task
+        working-directory: ./terraform
         run: |
           aws ecs run-task --cluster my-cluster --launch-type FARGATE --task-definition my-task --count 1 --network-configuration "awsvpcConfiguration={subnets=[${{ steps.subnet.outputs.subnet_id }}],securityGroups=[${{ steps.sg.outputs.security_group_id }}],assignPublicIp=ENABLED}"  
         env:
