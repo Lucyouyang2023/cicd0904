@@ -1,11 +1,13 @@
 # .github/workflows/ci-cd.yml  
 name: CI/CD Pipeline  
 
-on:  
-  workflow_run:
-    workflows: ["Terraform Workflow"]
-    types:
-      - completed
+on:
+  workflow_dispatch:
+# on:  
+#   workflow_run:
+#     workflows: ["Terraform Workflow"]
+#     types:
+#       - completed
 
 jobs:
   cicd:
