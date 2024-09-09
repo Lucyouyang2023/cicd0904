@@ -42,11 +42,13 @@ jobs:
     
       - name: Get Subnet ID
         id: subnet
-        run: echo "::set-output name=subnet_id::$(terraform output -raw subnet_id)"
+        working-directory: ./terraform
+        run: echo "subnet_id=$(terraform output -raw subnet_id)"
 
       - name: Get Security Group ID
         id: sg
-        run: echo "::set-output name=security_group_id::$(terraform output -raw security_group_id)"
+        working-directory: ./terraform
+        run: echo "security_group_id=$(terraform output -raw security_group_id)"
 
       - name: Debug Outputs
         run: |
