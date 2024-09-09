@@ -26,7 +26,8 @@ jobs:
       - name: Clean Terraform Directory
         run: rm -rf .terraform
 
-      - name: Initialize Terraform   
+      - name: Initialize Terraform
+        working-directory: ./terraform   
         run: terraform init
 
     
