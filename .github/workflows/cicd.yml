@@ -28,16 +28,13 @@ jobs:
         run: terraform init
   
      
-      - name: Initialize Terraform
+      - name: apply Terraform
         working-directory: ./terraform   
         run: |
           terraform apply -auto-approve
           cat outputs.tf
-          terraform outputs.tf
+          terraform output
 
-
-
-        
       - name: Get Subnet ID
         id: subnet
         run: echo "::set-output name=subnet_id::$(terraform output -raw subnet_id)"
