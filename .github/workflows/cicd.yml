@@ -63,7 +63,7 @@ jobs:
       - name: Run Terraform Output
         run: |
           cd /home/runner/work/cicd0909-1/cicd0909-1/terraform
-          cat outputs.tf2
+          cat outputs.tf
           # echo "subnet_id=$(terraform output -raw subnet_id)"
           # echo "security_group_id=$(terraform output -raw security_group_id)"
     
