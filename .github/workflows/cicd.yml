@@ -63,14 +63,14 @@ jobs:
 
       - name: Get Subnet ID
         id: subnet
-        working-directory: ./
+        working-directory: ./terraform/outputs.tf   
         run: echo "::set-env name=GITHUB_ENV::$(terraform output -raw subnet_id)"
         # run: echo $GITHUB_ENV
         # run: echo "subnet_id=$(terraform output -raw subnet_id)"
   
       - name: Get Security Group ID
         id: sg
-        working-directory: ./terraform
+        working-directory: ./terraform/outputs.tf
         run: echo "::set-env name=GITHUB_ENV::$(terraform output -raw subnet_id)"
         # run: echo "security_group_id=$(terraform output -raw security_group_id)"
     
