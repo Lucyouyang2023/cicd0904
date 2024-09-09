@@ -34,7 +34,8 @@ jobs:
         run: |
           terraform apply -auto-approve
           subnet_id=$(terraform output -raw subnet_id)
-          echo "subnet_id=$subnet_id" 
+          echo "subnet_id=$subnet_id"
+          echo "::set-output name=subnet_id::$(terraform output -raw subnet_id)"
           # echo "subnet_id=$(terraform output -raw subnet_id)" >> $GITHUB_ENV
           # echo $GITHUB_ENV
         
@@ -42,7 +43,7 @@ jobs:
         id: subnet
         run: echo "::set-output name=subnet_id::$(terraform output -raw subnet_id)"
 
-    #   - name: Get Security Group ID
+    ##   - name: Get Security Group ID
     #     id: sg
     #     run: echo "::set-output name=security_group_id::$(terraform output -raw security_group_id)"
 
