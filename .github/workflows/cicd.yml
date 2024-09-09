@@ -23,13 +23,19 @@ jobs:
           echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
           echo "AWS_DEFAULT_REGION=ap-northeast-1" >> $GITHUB_ENV
 
+      - name: Initialize Terraform   
+        run: terraform init
+  
+     
       - name: Initialize Terraform
         working-directory: ./terraform   
         run: |
-|         terraform init
           terraform apply -auto-approve
           cat outputs.tf
           terraform outputs.tf
+
+
+
         
       - name: Get Subnet ID
         id: subnet
