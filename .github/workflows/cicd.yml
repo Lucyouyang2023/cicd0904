@@ -1,7 +1,8 @@
 name: Terraform subnet
 
 on:
-  workflow_dispatch:
+  #workflow_dispatch:
+  push
 
 jobs:
   terraform:
@@ -34,8 +35,10 @@ jobs:
           terraform apply -auto-approve
           cat outputs.tf
           terraform output
-          echo "subnet_id=$(terraform output -raw subnet_id)" >> $GITHUB_ENV
-          echo $GITHUB_ENV
+          subnet_id=$(terraform output -raw subnet_id)
+          echo "subnet_id=$subnet_id" >> "$GITHUB_ENV"
+          # echo "subnet_id=$(terraform output -raw subnet_id)" >> $GITHUB_ENV
+          # echo $GITHUB_ENV
         
       - name: Get Subnet ID
         id: subnet
