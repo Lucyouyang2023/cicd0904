@@ -63,7 +63,11 @@ jobs:
       - name: Run Terraform Output
         run: |
           cd /home/runner/work/cicd0909-1/cicd0909-1/terraform
+          pwd
+          terraform apply -auto-approve
           cat outputs.tf
+          terraform output -raw subnet_id
+          terraform output
           # echo "subnet_id=$(terraform output -raw subnet_id)"
           # echo "security_group_id=$(terraform output -raw security_group_id)"
     
