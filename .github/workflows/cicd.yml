@@ -63,9 +63,9 @@ jobs:
       - name: Run Terraform Output
         run: |
           cd /home/runner/work/cicd0909-1/cicd0909-1/terraform
-          ls -l
-          echo "subnet_id=$(terraform output -raw subnet_id)"
-          echo "security_group_id=$(terraform output -raw security_group_id)"
+          cat outputs.tf2
+          # echo "subnet_id=$(terraform output -raw subnet_id)"
+          # echo "security_group_id=$(terraform output -raw security_group_id)"
     
       # - name: Get Subnet ID
       #   id: subnet
