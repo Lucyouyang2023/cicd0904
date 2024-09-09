@@ -34,9 +34,10 @@ jobs:
         working-directory: ./terraform   
         run: |
           terraform apply -auto-approve
-          subnet_id=$(terraform output -raw subnet_id)
-          echo "subnet_id=$subnet_id"
-          echo "::set-output name=subnet_id::$(terraform output -raw subnet_id)"
+          terraform output -raw subnet_id
+          # subnet_id=$(terraform output -raw subnet_id)
+          # echo "subnet_id=$subnet_id"
+          # echo "::set-output name=subnet_id::$(terraform output -raw subnet_id)"
           # echo "subnet_id=$(terraform output -raw subnet_id)" >> $GITHUB_ENV
           # echo $GITHUB_ENV
         
