@@ -59,6 +59,19 @@ jobs:
           AWS_REGION: ap-northeast-1
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+
+      - name: Get Subnet ID
+        id: subnet
+        working-directory: ./
+        run: echo "::set-env name=GITHUB_ENV::$(terraform output -raw subnet_id)"
+        run: echo "subnet_id=$(terraform output -raw subnet_id)"
+  
+      - name: Get Security Group ID
+        id: sg
+        working-directory: ./terraform
+        run: echo "::set-env name=GITHUB_ENV::$(terraform output -raw subnet_id)"
+        run: echo "security_group_id=$(terraform output -raw security_group_id)"
     
       - name: Start ECS Task
         working-directory: ./terraform
